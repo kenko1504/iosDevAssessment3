@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  StartMenuView.swift
 //  IosAssessment3
 //
 //  Created by Kenji Watanabe on 2/5/2025.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct StartMenuView: View {
     var body: some View {
         VStack {
             Image(systemName: "globe")
@@ -20,5 +20,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    StartMenuView()
 }
