@@ -7,6 +7,7 @@ import SwiftUI
 //
 class GameViewModel: ObservableObject {
     @Published var deck: [Card] = []
+    @Published var gameMode: String = "Easy"
     
     init() {
         fillDeckWithCards()
@@ -16,13 +17,19 @@ class GameViewModel: ObservableObject {
     //this fills the deck with 52 cards
     func fillDeckWithCards() {
         let suits = ["Spade", "Heart", "Diamond", "Clover"]
-        var deck: [Card] = []
-
-        for id in 1...13 {
+        for numb in 1...13 {
             for suit in suits {
-                deck.append(Card(id: id, type: suit))
+                deck.append(Card(type: suit, number: numb))
             }
         }
         return
     }
+    
+    func debug() {
+        print(deck.count)
+        for i in deck{
+            print("id:\(i.number), type:\(i.type)")
+        }
+    }
 }
+

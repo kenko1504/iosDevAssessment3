@@ -7,16 +7,27 @@
 
 import SwiftUI
 
+//NOTE: this view is where the user play the concentration game
+//user enters this view via start menu view and returns to that view when all cards are matched. 
 struct CardGameView: View {
+    //debugging variable
+    @State var debugNum = 0
+    
     @ObservedObject var gameViewModel = GameViewModel()
-    let columns = [GridItem(.adaptive(minimum: 60))]
+    let columns = [GridItem(.adaptive(minimum: 60))] //each column is 60 points wide
     var body: some View {
         ScrollView{
-            LazyVGrid(columns: columns, spacing: 10){
+            LazyVGrid(columns: columns, spacing: 10){ //spacing determines the vertical gap between cards
+                
                 ForEach(gameViewModel.deck){ card in
                     CardView(card: card)
                 }
+                .frame(height: 80)
             }
+        }
+        .onAppear {
+            gameViewModel.debug()
+
         }
     }
 }
