@@ -12,7 +12,7 @@ struct CardView: View {
     let card :Card
     var body: some View {
         ZStack {
-            if !card.isFacingUp{
+            if card.isFacingUp{
                 RoundedRectangle(cornerRadius: 10)
                     .fill(Color.white)
                 RoundedRectangle(cornerRadius: 10)

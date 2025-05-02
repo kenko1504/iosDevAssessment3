@@ -8,7 +8,7 @@
 import SwiftUI
 
 //NOTE: this view is where the user play the concentration game
-//user enters this view via start menu view and returns to that view when all cards are matched. 
+//user enters this view via start menu view and returns to that view when all cards are matched.
 struct CardGameView: View {
     //debugging variable
     @State var debugNum = 0
@@ -21,12 +21,15 @@ struct CardGameView: View {
                 
                 ForEach(gameViewModel.deck){ card in
                     CardView(card: card)
+                        .onTapGesture {
+                            gameViewModel.choose(card:card)
+                        }
                 }
                 .frame(height: 80)
             }
         }
         .onAppear {
-            gameViewModel.debug()
+            //gameViewModel.debug()
 
         }
     }
