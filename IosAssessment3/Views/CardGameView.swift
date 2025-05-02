@@ -8,14 +8,16 @@
 import SwiftUI
 
 struct CardGameView: View {
+    @ObservedObject var gameViewModel = GameViewModel()
+    let columns = [GridItem(.adaptive(minimum: 60))]
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        ScrollView{
+            LazyVGrid(columns: columns, spacing: 10){
+                ForEach(gameViewModel.deck){ card in
+                    CardView(card: card)
+                }
+            }
         }
-        .padding()
     }
 }
 
