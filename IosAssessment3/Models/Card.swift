@@ -13,4 +13,5 @@ struct Card: Identifiable{
     
     var isFacingUp: Bool = false //boolean variable to track state
     var isMatched: Bool = false
+    var hasDisappeared: Bool = false
 }

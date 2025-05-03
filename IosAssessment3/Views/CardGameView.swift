@@ -16,12 +16,13 @@ struct CardGameView: View {
     @ObservedObject var gameViewModel = GameViewModel()
     let columns = [GridItem(.adaptive(minimum: 60))] //each column is 60 points wide
     var body: some View {
+        TimerView()
         ScrollView{
             LazyVGrid(columns: columns, spacing: 10){ //spacing determines the vertical gap between cards
                 
                 ForEach(gameViewModel.deck){ card in
                     CardView(card: card)
-                        .onTapGesture {
+                        .onTapGesture { //flips card when a card is tapped
                             gameViewModel.choose(card:card)
                         }
                 }

@@ -5,6 +5,8 @@ import SwiftUI
 //
 //  Created by Kenji Watanabe on 2/5/2025.
 //
+
+//this view model is responsible for managing the cards displayed on the screen
 class GameViewModel: ObservableObject {
     @Published var deck: [Card] = []
     @Published var gameMode: String = "Easy"
@@ -12,6 +14,7 @@ class GameViewModel: ObservableObject {
     init() {
         fillDeckWithCards()
         deck.shuffle()
+        debug()
     }
     
     //this fills the deck with 52 cards
@@ -26,18 +29,33 @@ class GameViewModel: ObservableObject {
     }
     
     func choose(card:Card){
+        
+        
+        //gets the index of the selected card in the deck e.g., if 5 of Spade was clicked, chosenIndex=6 where 6 represents the position of that card in the deck
         guard let chosenIndex = deck.firstIndex(where: { $0.id == card.id}), !deck[chosenIndex].isFacingUp, !deck[chosenIndex].isMatched
         else {
             return
         }
         
         deck[chosenIndex].isFacingUp = true
+        for index in deck.indices {
+            if deck[chosenIndex].number == deck[index].number &&
+                deck[index].isFacingUp &&
+                deck[chosenIndex].type != deck[index].type && deck[index].hasDisappeared == false{
+                
+                deck[chosenIndex].isMatched = true
+                deck[index].isMatched = true
+                
+                deck[chosenIndex].hasDisappeared = true
+                deck[index].hasDisappeared = true
+            }
+        }
     }
     
     func debug() {
         print(deck.count)
         for i in deck{
-            print("id:\(i.number), type:\(i.type)")
+            print("number:\(i.number), type:\(i.type)")
         }
     }
 }

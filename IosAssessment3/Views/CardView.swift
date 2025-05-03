@@ -25,6 +25,12 @@ struct CardView: View {
                 RoundedRectangle(cornerRadius: 10)
                     .fill(Color.red)
             }
+            
+            //if card matches
+            if card.isMatched{
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(Color.white)
+            }
         }
         .aspectRatio(2/3, contentMode: .fit)
         .opacity(card.isMatched ? 0 : 1)
