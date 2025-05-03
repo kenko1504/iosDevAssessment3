@@ -50,6 +50,22 @@ class GameViewModel: ObservableObject {
                 deck[index].hasDisappeared = true
             }
         }
+        
+        //count how many cards in deck have been flipped that has not disappeared.
+        var flippedCards = 0
+        for index in deck.indices {
+            if deck[index].isFacingUp == true && !deck[index].hasDisappeared{
+                flippedCards += 1
+            }
+        }
+        if flippedCards == 3 {
+            for index in deck.indices {
+                deck[index].isFacingUp = false
+                
+            }
+            deck[chosenIndex].isFacingUp = true
+        }
+            
     }
     
     func debug() {
