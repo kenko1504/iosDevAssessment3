@@ -25,6 +25,15 @@ class GameViewModel: ObservableObject {
         return
     }
     
+    func choose(card:Card){
+        guard let chosenIndex = deck.firstIndex(where: { $0.id == card.id}), !deck[chosenIndex].isFacingUp, !deck[chosenIndex].isMatched
+        else {
+            return
+        }
+        
+        deck[chosenIndex].isFacingUp = true
+    }
+    
     func debug() {
         print(deck.count)
         for i in deck{
