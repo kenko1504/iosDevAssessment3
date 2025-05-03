@@ -43,6 +43,7 @@ struct StartMenuView: View {
         }
         .onAppear{
             updateGameScoreTable()
+            
         }
 
     }

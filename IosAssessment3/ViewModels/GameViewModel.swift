@@ -28,6 +28,12 @@ class GameViewModel: ObservableObject {
         return
     }
     
+    func resetContent() {
+        deck.removeAll()
+        fillDeckWithCards()
+        deck.shuffle()
+    }
+    
     func choose(card:Card){
         
         

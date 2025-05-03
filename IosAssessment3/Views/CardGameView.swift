@@ -31,7 +31,7 @@ struct CardGameView: View {
         }
         .onAppear {
             //gameViewModel.debug()
-
+            gameViewModel.resetContent()
         }
     }
 }
