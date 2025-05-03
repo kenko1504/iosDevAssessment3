@@ -8,14 +8,28 @@
 import SwiftUI
 
 struct StartMenuView: View {
+    @State private var selectedDifficulty = "Easy"
+    let difficulties = ["Easy", "Medium", "Hard"]
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack{
+            VStack {
+                Text("Concentration card game")
+                    .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                Spacer()
+                HStack{
+                    Text("Difficulty:")
+                    Picker("Difficulty", selection:$selectedDifficulty){
+                        ForEach(difficulties, id:\.self){ difficulty in
+                            Text(difficulty)
+                        }
+                    }
+                }
+                Spacer()
+                NavigationLink("Start Game", destination: CardGameView())
+            }
         }
-        .padding()
+
     }
 }
 
