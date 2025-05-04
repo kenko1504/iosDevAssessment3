@@ -23,7 +23,8 @@ struct CardView: View {
             }
             else{
                 RoundedRectangle(cornerRadius: 10)
-                    .fill(Color.red)
+                    .fill(Color.green)
+                    .opacity(0.2)
             }
             
             //if card matches

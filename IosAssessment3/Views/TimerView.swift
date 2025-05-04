@@ -14,7 +14,6 @@ struct TimerView: View {
     var body: some View {
         VStack {
             Text("Time: \(counter)")
-                .font(.largeTitle)
         }
         .onReceive(timer) { _ in
             counter += 1

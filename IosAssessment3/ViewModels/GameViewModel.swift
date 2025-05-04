@@ -14,7 +14,6 @@ class GameViewModel: ObservableObject {
     init() {
         fillDeckWithCards()
         deck.shuffle()
-        debug()
     }
     
     //this fills the deck with 52 cards
