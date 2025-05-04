@@ -9,7 +9,10 @@ import SwiftUI
 
 struct StartMenuView: View {
     @State private var selectedDifficulty = "Easy"
-    let difficulties = ["Easy", "Medium", "Hard"]
+    @State var difficulties: [String] = []
+    
+    @State var gameViewModel = GameViewModel()
+    
     
     let header = ["Easy", "Medium", "Hard"]
     @State var data = [
@@ -35,15 +38,25 @@ struct StartMenuView: View {
                             Text(difficulty)
                         }
                     }
+                    .onChange(of: selectedDifficulty) { newDifficulty in
+                                    // Code to run whenever the picker selection changes
+                        print("Selected Difficulty: \(newDifficulty)")
+                        gameViewModel.modifyDifficulty(difficulty: newDifficulty)
+                        print(gameViewModel.currentGameMode)
+                    }
                 }
                 Spacer()
-                NavigationLink("Start Game", destination: CardGameView())
+                NavigationLink("Start Game", destination: CardGameView(gameViewModel: gameViewModel))
+                    .onTapGesture {
+                        print(selectedDifficulty)
+                    }
                 Spacer()
             }
         }
         .onAppear{
             updateGameScoreTable()
             debug()
+            self.difficulties = gameViewModel.gameModes
         }
 
     }

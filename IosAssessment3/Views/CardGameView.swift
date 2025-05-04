@@ -12,11 +12,13 @@ import SwiftUI
 struct CardGameView: View {
     //debugging variable
     @State var debugNum = 0
-    
-    @ObservedObject var gameViewModel = GameViewModel()
+    @ObservedObject var gameViewModel : GameViewModel
     let columns = [GridItem(.adaptive(minimum: 60))] //each column is 60 points wide
     var body: some View {
-        TimerView()
+        HStack{
+            TimerView()
+            Text("Difficulty: \(gameViewModel.currentGameMode)")
+        }
         ScrollView{
             LazyVGrid(columns: columns, spacing: 10){ //spacing determines the vertical gap between cards
                 
@@ -37,5 +39,5 @@ struct CardGameView: View {
 }
 
 #Preview {
-    CardGameView()
+    CardGameView(gameViewModel: GameViewModel())
 }
