@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct TimerView: View {
-    @State private var counter = 0
+    @Binding var counter: Int
+    @Binding var isRunning: Bool
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
     var body: some View {
@@ -16,11 +17,18 @@ struct TimerView: View {
             Text("Time: \(counter)")
         }
         .onReceive(timer) { _ in
-            counter += 1
+            if(isRunning){
+                counter += 1
+            }
+            else{
+                print("COUNTER ENDED")
+            }
+            
         }
     }
 }
 
 #Preview {
-    TimerView()
+    TimerView(counter: .constant(0), isRunning: .constant(true))
 }
+

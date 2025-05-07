@@ -13,10 +13,15 @@ class GameViewModel: ObservableObject {
     @Published var currentGameMode: String = "Easy"
     let easyCardNumber:Int = 8
     let mediumCardNumber:Int = 20
-
+    
     init() {
         fillDeckWithCards()
         deck.shuffle()
+    }
+    
+    func checkGameEnded() -> Bool{
+        let disappearedCount = deck.filter { $0.hasDisappeared }
+        return deck.count == disappearedCount.count
     }
     
     //this fills the deck with 52 cards
@@ -90,8 +95,6 @@ class GameViewModel: ObservableObject {
     }
     
     func choose(card:Card){
-        
-        
         //gets the index of the selected card in the deck e.g., if 5 of Spade was clicked, chosenIndex=6 where 6 represents the position of that card in the deck
         guard let chosenIndex = deck.firstIndex(where: { $0.id == card.id}), !deck[chosenIndex].isFacingUp, !deck[chosenIndex].isMatched
         else {
