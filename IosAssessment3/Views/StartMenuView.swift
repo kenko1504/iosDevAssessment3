@@ -27,6 +27,13 @@ struct StartMenuView: View {
     var body: some View {
         NavigationStack{
             VStack {
+                HStack{
+                    Spacer()
+                    NavigationLink("Settings", destination: SettingView())
+                        .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
+                        
+                    
+                }
                 Text("Concentration card game")
                     .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                 Spacer()
