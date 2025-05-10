@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import FirebaseAnalytics
 //NOTE: this view is where the user play the concentration game
 //user enters this view via start menu view and returns to that view when all cards are matched.
 struct CardGameView: View {
@@ -48,6 +48,8 @@ struct CardGameView: View {
         .onAppear {
             //gameViewModel.debug()
             gameViewModel.resetContent()
+            Analytics.logEvent("difficulty_selected", parameters: ["difficulty": "\(gameViewModel.currentGameMode)"])
+            print("test")
         }
     }
 }

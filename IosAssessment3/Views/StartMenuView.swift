@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAnalytics
 
 struct StartMenuView: View {
     @State private var selectedDifficulty = "Easy"
@@ -27,13 +28,6 @@ struct StartMenuView: View {
     var body: some View {
         NavigationStack{
             VStack {
-                HStack{
-                    Spacer()
-                    NavigationLink("Settings", destination: SettingView())
-                        .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
-                        
-                    
-                }
                 Text("Concentration card game")
                     .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                 Spacer()
@@ -55,6 +49,7 @@ struct StartMenuView: View {
                 Spacer()
                 NavigationLink("Start Game", destination: CardGameView(gameViewModel: gameViewModel))
                     .onTapGesture {
+                        print("test")
                         print(selectedDifficulty)
                     }
                 Spacer()
