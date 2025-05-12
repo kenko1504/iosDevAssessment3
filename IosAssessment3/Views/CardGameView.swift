@@ -34,8 +34,8 @@ struct CardGameView: View {
                                 print("Game has ended!")
                                 //Pause game timer
                                 isRunning = false
-                                //Display score
-                                
+                                //Save high score
+                                HighScoreManager.shared.addHighScore(score: counter, difficulty: gameViewModel.currentGameMode)
                                 dismiss()
                                 //NavigationLink("End Game", destination: StartMenuView())
                             }

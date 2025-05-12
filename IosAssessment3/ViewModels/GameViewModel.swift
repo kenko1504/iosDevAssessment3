@@ -11,6 +11,7 @@ class GameViewModel: ObservableObject {
     @Published var deck: [Card] = []
     @Published var gameModes: [String] = ["Easy", "Medium", "Hard"]
     @Published var currentGameMode: String = "Easy"
+    @Published var gameDidEnd = false
     let easyCardNumber:Int = 8
     let mediumCardNumber:Int = 20
     
@@ -19,10 +20,19 @@ class GameViewModel: ObservableObject {
         deck.shuffle()
     }
     
-    func checkGameEnded() -> Bool{
+    func checkGameEnded() -> Bool {
         let disappearedCount = deck.filter { $0.hasDisappeared }
-        return deck.count == disappearedCount.count
+        let hasEnded = deck.count == disappearedCount.count
+        if hasEnded {
+            gameDidEnd = true
+        }
+        return hasEnded
     }
+    
+    // Add method to reset the flag
+        func resetGameEndedFlag() {
+            gameDidEnd = false
+        }
     
     //this fills the deck with 52 cards
     //then generate deck of cards depending on difficulty: 8 cards for easy (but with guarenteed pairs
