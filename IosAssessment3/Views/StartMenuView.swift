@@ -108,4 +108,3 @@ struct StartMenuView: View {
 #Preview {
     StartMenuView()
 }
-
